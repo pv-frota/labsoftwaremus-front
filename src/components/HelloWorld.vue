@@ -1,14 +1,39 @@
 <template>
   <q-page class="flex flex-center">
-    <img alt="Quasar logo" src="../assets/logo.svg" style="width: 200px; height: 200px">
+    <q-form @submit="login">
+      <q-input
+        outlined dense
+        class="col-md-12 col-sm-12 col-xl-8"
+        v-model="form.login"
+        label="Login"
+      />
+      <q-input
+        outlined dense
+        class="col-md-12 col-sm-12 col-xl-8"
+        v-model="form.senha"
+        label="Senha"
+      />
+      <q-btn label="Entrar" color="primary" type="submit" />
+    </q-form>
   </q-page>
 </template>
 
-<style>
-</style>
-
 <script>
 export default {
-  name: 'HelloWorld'
+  name: 'HelloWorld',
+  data () {
+    return {
+      form: {
+        login: '',
+        senha: ''
+      }
+    }
+  },
+  methods: {
+    async login () {
+      const data = await this.$services.auth().login(this.form.login, this.form.senha)
+      console.log(data)
+    }
+  }
 }
 </script>

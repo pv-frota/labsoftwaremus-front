@@ -1,3 +1,4 @@
+import store from '@/store'
 import { Notify } from 'quasar'
 export default class Rest {
   constructor (url, http) {
@@ -5,15 +6,24 @@ export default class Rest {
     this.http = http
   }
 
-  async list () {
+  async list (auth = false) {
     try {
-      return await this.http.get(this.url)
+      if(auth) {
+        return await this.http.get(this.url, { 
+          headers: {
+            Authorization: 'Bearer ' + store.state.token
+          }
+        })
+      } else {
+        return await this.http.get(this.url)
+      }
+      
     } catch (error) {
       throw error.response
     }
   }
 
-  async listFilter ($query = {}) {
+  async listFilter ($query = {}, auth = false) {
     try {
       let params = ''
       Object.keys($query).map((value) => {
@@ -21,8 +31,16 @@ export default class Rest {
           params += `;${value}=` + $query[value]
         }
       })
-      // return await this.http.get(this.url)
-      return this.http.get(`${this.url}/filtros${params}`)
+      if(auth) {
+        return await this.http.get(`${this.url}/filtros${params}`, { 
+          headers: {
+            Authorization: 'Bearer' + store.state.token
+          }
+        })
+      } else {
+        // return await this.http.get(this.url)
+        return this.http.get(`${this.url}/filtros${params}`)
+      }
     } catch (error) {
       throw error.response
     }
@@ -33,7 +51,8 @@ export default class Rest {
       try {
         return await this.http.post(this.url, $data, {
           headers: {
-            'g-recaptcha-response': $captchaResponse
+            'g-recaptcha-response': $captchaResponse,
+            Authorization: 'Bearer' + store.state.token
           }
         })
       } catch (error) {
@@ -41,7 +60,11 @@ export default class Rest {
       }
     }
     try {
-      return await this.http.post(this.url, $data)
+      return await this.http.post(this.url, $data, { 
+        headers: {
+          Authorization: 'Bearer' + store.state.token
+        }
+      })
     } catch (error) {
       throw error.response
     }

@@ -31,8 +31,10 @@ export default {
   },
   methods: {
     async login () {
-      const data = await this.$services.auth().login(this.form.login, this.form.senha)
-      console.log(data)
+      const response = await this.$services.auth().login(this.form.login, this.form.senha)
+      console.log(response.data)
+      this.$store.commit('setUsuario', response.data);
+      this.$router.push('/about')
     }
   }
 }

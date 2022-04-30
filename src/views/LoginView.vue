@@ -1,21 +1,31 @@
 <template>
-  <q-page class="flex flex-center">
-    <q-form @submit="login">
-      <q-input
-        outlined dense
-        class="col-md-12 col-sm-12 col-xl-8"
-        v-model="form.login"
-        label="Login"
-      />
-      <q-input
-        outlined dense
-        class="col-md-12 col-sm-12 col-xl-8"
-        v-model="form.senha"
-        label="Senha"
-      />
-      <q-btn label="Entrar" color="primary" type="submit" />
-    </q-form>
-  </q-page>
+  <div class="fit row justify-center">
+
+    <div class="fit column q-pa-xl " style="max-width: 30%">
+
+      <q-form @submit="login">
+        <q-input
+          outlined
+          dense
+          class="q-my-sm"
+          v-model="form.login"
+          label="Login"
+        />
+
+        <q-input
+          outlined
+          dense
+          class="q-my-sm"
+          v-model="form.senha"
+          label="Senha"
+        />
+        <q-btn label="Entrar" color="primary" type="submit" />
+      </q-form>
+
+    </div>
+
+  </div>
+
 </template>
 
 <script>
@@ -24,14 +34,16 @@ export default {
   data () {
     return {
       form: {
-        login: '',
-        senha: ''
-      }
-    }
+        login: "",
+        senha: "",
+      },
+    };
   },
   methods: {
     async login () {
-      const response = await this.$services.auth().login(this.form.login, this.form.senha)
+      const response = await this.$services
+        .auth()
+        .login(this.form.login, this.form.senha)
       this.$store.commit('setUsuario', response.data);
       this.$router.push('/classificacao')
     }

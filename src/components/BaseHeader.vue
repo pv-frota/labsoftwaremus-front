@@ -14,28 +14,28 @@
         <q-space />
         <q-btn label="Home" />
         <div class="col-xs-1" />
-        <q-btn label="Home" />
+        <q-btn label="Buscar" />
         <div class="col-xs-1" />
-        <q-btn label="Home" />
+        <q-btn label="Contato" />
         <q-space />
-        <q-btn label="Login"  v-if="!isLogado" @click="$router.push('/login')"/>
+        <q-btn label="Login"  v-if="!isLogado" @click="goToLogin()"/>
         <q-btn-dropdown v-if="isLogado" color="primary" label="Admin">
           <q-list>
             <q-item clickable v-close-popup @click="onItemClick">
               <q-item-section>
-                <q-item-label>Photos</q-item-label>
+                <q-item-label>Novo Inseto</q-item-label>
               </q-item-section>
             </q-item>
 
             <q-item clickable v-close-popup @click="onItemClick">
               <q-item-section>
-                <q-item-label>Videos</q-item-label>
+                <q-item-label>Classificações</q-item-label>
               </q-item-section>
             </q-item>
 
             <q-item clickable v-close-popup @click="onItemClick">
               <q-item-section>
-                <q-item-label>Articles</q-item-label>
+                <q-item-label>Sair</q-item-label>
               </q-item-section>
             </q-item>
           </q-list>

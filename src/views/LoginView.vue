@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'LoginView',
   data () {
     return {
       form: {
@@ -32,9 +32,8 @@ export default {
   methods: {
     async login () {
       const response = await this.$services.auth().login(this.form.login, this.form.senha)
-      console.log(response.data)
       this.$store.commit('setUsuario', response.data);
-      this.$router.push('/about')
+      this.$router.push('/classificacao')
     }
   }
 }

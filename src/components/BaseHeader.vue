@@ -15,7 +15,8 @@
                 <div class="col-xs-1"/>
                 <q-btn label="Home"/>
                 <q-space/>
-                <q-btn-dropdown color="primary" label="User">
+                <q-btn label="Login"  v-if="!isLogado" @click="$router.push('/login')"/>
+                <q-btn-dropdown v-if="isLogado" color="primary" label="Admin">
                   <q-list>
                     <q-item clickable v-close-popup @click="onItemClick">
                       <q-item-section>
@@ -53,6 +54,16 @@
 
 <script>
 export default {
-  name: 'BaseHeader'
+  name: 'BaseHeader',
+  computed: {
+    isLogado () {
+      return this.$store.getters.isLogado
+    }
+  },
+  methods: {
+    goToLogin () {
+      this.$router.push('/login')
+    }
+  }
 }
 </script>

@@ -75,7 +75,7 @@
 <script>
 import { columns } from '../constantes/classificacao.const'
 export default {
-  name: 'AboutView',
+  name: 'ClassificacaoView',
   data () {
     return {
       classificacoes: [],

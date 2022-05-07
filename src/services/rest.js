@@ -23,7 +23,7 @@ export default class Rest {
     }
   }
 
-  async listFilter ($query = {}, auth = false) {
+  async filter ($query = {}, auth = false) {
     try {
       let params = ''
       Object.keys($query).map((value) => {
@@ -32,14 +32,14 @@ export default class Rest {
         }
       })
       if(auth) {
-        return await this.http.get(`${this.url}/filtros${params}`, { 
+        return await this.http.get(`${this.url}/filtro${params}`, { 
           headers: {
             Authorization: 'Bearer' + store.state.token
           }
         })
       } else {
         // return await this.http.get(this.url)
-        return this.http.get(`${this.url}/filtros${params}`)
+        return this.http.get(`${this.url}/filtro${params}`)
       }
     } catch (error) {
       throw error.response
@@ -73,6 +73,14 @@ export default class Rest {
   async read ($id) {
     try {
       return await this.http.get(`${this.url}/${$id}`)
+    } catch (error) {
+      throw error.response
+    }
+  }
+
+  async readParent ($id) {
+    try {
+      return await this.http.get(`${this.url}/pai/${$id}`)
     } catch (error) {
       throw error.response
     }

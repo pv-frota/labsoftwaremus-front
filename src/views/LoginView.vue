@@ -45,7 +45,7 @@ export default {
         .auth()
         .login(this.form.login, this.form.senha)
       this.$store.commit('setUsuario', response.data);
-      this.$router.push('/classificacao')
+      this.$router.push('/')
     }
   }
 }

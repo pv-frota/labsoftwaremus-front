@@ -34,7 +34,7 @@ export default class Rest {
       if(auth) {
         return await this.http.get(`${this.url}/filtro${params}`, { 
           headers: {
-            Authorization: 'Bearer' + store.state.token
+            Authorization: 'Bearer ' + store.state.token
           }
         })
       } else {
@@ -52,7 +52,7 @@ export default class Rest {
         return await this.http.post(this.url, $data, {
           headers: {
             'g-recaptcha-response': $captchaResponse,
-            Authorization: 'Bearer' + store.state.token
+            Authorization: 'Bearer ' + store.state.token
           }
         })
       } catch (error) {
@@ -62,7 +62,7 @@ export default class Rest {
     try {
       return await this.http.post(this.url, $data, { 
         headers: {
-          Authorization: 'Bearer' + store.state.token
+          Authorization: 'Bearer ' + store.state.token
         }
       })
     } catch (error) {
@@ -88,7 +88,11 @@ export default class Rest {
 
   async update ($id, $data) {
     try {
-      return await this.http.put(`${this.url}/${$id}`, $data)
+      return await this.http.put(`${this.url}/${$id}`, $data, {
+        headers: {
+          Authorization: 'Bearer ' + store.state.token
+        }
+      })
     } catch (error) {
       throw error.response
     }
@@ -96,7 +100,11 @@ export default class Rest {
 
   async delete ($id) {
     try {
-      return await this.http.delete(`${this.url}/${$id}`)
+      return await this.http.delete(`${this.url}/${$id}`, {
+        headers: {
+          Authorization: 'Bearer ' + store.state.token
+        }
+      })
     } catch (error) {
       console.log('error', error.response.status)
       if (error.response.status === 409) {

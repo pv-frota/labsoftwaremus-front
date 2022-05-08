@@ -85,7 +85,6 @@ export default {
   async mounted () {
     try {
       this.$q.loading.show()
-      await new Promise(resolve => setTimeout(resolve, 2000))
       let response = await this.$services.classificacao().list()
       this.classificacoes = response.data
     } catch (e) {

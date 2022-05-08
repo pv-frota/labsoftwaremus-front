@@ -21,19 +21,25 @@
         <q-btn label="Login"  v-if="!isLogado" @click="goToLogin()"/>
         <q-btn-dropdown v-if="isLogado" color="primary" label="Admin">
           <q-list>
-            <q-item clickable v-close-popup @click="onItemClick">
+            <q-item clickable v-close-popup>
               <q-item-section>
                 <q-item-label>Novo Inseto</q-item-label>
               </q-item-section>
             </q-item>
 
-            <q-item clickable v-close-popup @click="onItemClick">
+            <q-item clickable v-close-popup @click="goToTaxonomia()">
               <q-item-section>
-                <q-item-label>Classificações</q-item-label>
+                <q-item-label>Taxonomia</q-item-label>
               </q-item-section>
             </q-item>
 
-            <q-item clickable v-close-popup @click="onItemClick">
+            <q-item clickable v-close-popup @click="goToClassificacao()">
+              <q-item-section>
+                <q-item-label>Classificação</q-item-label>
+              </q-item-section>
+            </q-item>
+
+            <q-item clickable v-close-popup>
               <q-item-section>
                 <q-item-label>Sair</q-item-label>
               </q-item-section>
@@ -66,7 +72,13 @@ export default {
   methods: {
     goToLogin () {
       this.$router.push("/login")
-    }
+    },
+    goToTaxonomia () {
+      this.$router.push("/taxonomia")
+    },
+    goToClassificacao () {
+      this.$router.push("/classificacao")
+    },
   }
 }
 </script>

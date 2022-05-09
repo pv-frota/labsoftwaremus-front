@@ -1,32 +1,67 @@
 <template>
-  <div class="fit row justify-center">
 
-    <div class="fit column q-pa-xl " style="max-width: 30%">
+  <q-page class="flex flex-center">
 
-      <q-form @submit="login">
-        <q-input
-          outlined
-          dense
-          class="q-my-sm"
-          v-model="form.login"
-          label="Login"
-        />
+    <div class="fit row justify-center">
 
-        <q-input
-          outlined
-          dense
-          class="q-my-sm"
-          v-model="form.senha"
-          label="Senha"
-        />
-        <q-btn label="Entrar" color="primary" type="submit" />
-      </q-form>
+      <div class="column q-pa-xl" style="max-width: 40%">
+
+        <q-form @submit="login">
+
+          <div class="form-group">
+
+            <div class="form-input" style="max-width: 90%">
+
+              <p>Acesso Administrativo</p>
+
+              <q-input
+                filled
+                dense
+                class="q-my-sm"
+                v-model="form.login"
+                label="Login"
+              />
+
+              <q-input
+                filled
+                dense
+                class="q-my-sm"
+                v-model="form.senha"
+                label="Senha"
+              />
+              <q-btn class="q-my-md" label="Entrar" color="positive" type="submit" />
+
+            </div>
+
+          </div>
+
+        </q-form>
+
+      </div>
 
     </div>
-
-  </div>
+    
+  </q-page>
 
 </template>
+
+<style scoped>
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 300px;
+  background-color: lightcyan;
+  border-radius: 25px;
+}
+
+.form-input{
+  text-align: center;
+}
+</style>
 
 <script>
 export default {

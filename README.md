@@ -1,4 +1,6 @@
 # lab-front
+## Instalar o node (versão LTS), depois seguir com o 1° e 2° passos.
+https://nodejs.org/en/
 
 ## Project setup - 1° passo
 ```

@@ -1,7 +1,7 @@
 <template>
     <q-table
-      title="Classes"
-      :rows="classes"
+      title="Famílias"
+      :rows="familias"
       :columns="columns"
       row-key="id"
     >
@@ -12,11 +12,11 @@
             color="green"
             icon="fas fa-plus"
             class="q-pa-xs"
-            label="Nova Classe"
+            label="Nova Família"
             @click="showDialog()"
           >
             <q-tooltip>
-              Adicionar nova classe
+              Adicionar nova família
             </q-tooltip>
           </q-btn>
       </template>
@@ -40,7 +40,7 @@
             dense
             icon="fas fa-trash"
             class="q-pa-xs q-ml-xs"
-            @click="deleteClasse(props.row.id)"
+            @click="deleteFamilia(props.row.id)"
           >
             <q-tooltip>
               Excluir
@@ -49,63 +49,63 @@
         </q-td>
       </template>
     </q-table>
-    <classe-dialog 
+    <familia-dialog 
       v-model="this.enableDialog" 
-      :classe="classeSelecionado" 
+      :familia="familiaSelecionado" 
       @close="closeDialog"
     />
 </template>
 
 <script>
-import { columns } from '@/constantes/classe.const'
-import ClasseDialog from '@/components/taxonomia/ClasseDialog.vue'
+import { columns } from '@/constantes/familia.const'
+import FamiliaDialog from '@/components/taxonomia/FamiliaDialog.vue'
 export default {
-  name: 'ClasseTab',
+  name: 'FamiliaTab',
   components: {
-    ClasseDialog
+    FamiliaDialog
   },
   data () {
     return {
-      classes: [],
+      familias: [],
       columns: columns,
       enableDialog: false,
-      classeSelecionado: 0
+      familiaSelecionado: 0
     }
   },
   mounted () {
-    this.getClasses()
+    this.getFamilias()
   },
   methods: {
-    async getClasses() {
+    async getFamilias() {
       try {
         this.$q.loading.show()
-        let response = await this.$services.classe().list()
-        this.classes = response.data
+        let response = await this.$services.familia().list()
+        this.familias = response.data
       } catch (e) {
         console.log(e)
       } finally {
         this.$q.loading.hide()
       }
     },
-    async deleteClasse(id) {
+    async deleteFamilia(id) {
       try {
         this.$q.loading.show()
-        await this.$services.classe().delete(id)
+        await this.$services.familia().delete(id)
       } catch (e) {
         console.log(e)
       } finally {
         this.$q.loading.hide()
-        this.getClasses()
+        this.getFamilias()
       }
     },
     showDialog (id = 0) {
-      this.classeSelecionado = id
+      this.familiaSelecionado = id
       this.enableDialog = true
     },
     closeDialog () {
-      this.classeSelecionado = 0
+      this.familiaSelecionado = 0
       this.enableDialog = false
-      this.getClasses()
+      this.getFamilias()
     }
   }
 }

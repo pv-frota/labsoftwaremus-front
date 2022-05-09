@@ -23,8 +23,8 @@
           animated
           swipeable
           vertical
-          transition-prev="jump-up"
-          transition-next="jump-up"
+          transition-prev="slide-up"
+          transition-next="slide-down"
         >
           <q-tab-panel name="reino">
             <reino-tab/>
@@ -39,15 +39,15 @@
           </q-tab-panel>
 
           <q-tab-panel name="ordem">
-            <classe-tab/>
+            <ordem-tab/>
           </q-tab-panel>
 
           <q-tab-panel name="familia">
-            <classe-tab/>
+            <familia-tab/>
           </q-tab-panel>
 
           <q-tab-panel name="genero">
-            <classe-tab/>
+            <genero-tab/>
           </q-tab-panel>
         </q-tab-panels>
       </template>
@@ -60,13 +60,19 @@ import { ref } from 'vue'
 import ReinoTab from '@/components/taxonomia/ReinoTab.vue'
 import FiloTab from '@/components/taxonomia/FiloTab.vue'
 import ClasseTab from '@/components/taxonomia/ClasseTab.vue'
+import OrdemTab from '@/components/taxonomia/OrdemTab.vue'
+import FamiliaTab from '@/components/taxonomia/FamiliaTab.vue'
+import GeneroTab from '@/components/taxonomia/GeneroTab.vue'
 
 export default {
   name: 'TaxonomiaView',
   components: {
     ReinoTab,
     FiloTab,
-    ClasseTab
+    ClasseTab,
+    OrdemTab,
+    FamiliaTab,
+    GeneroTab
   },
   setup () {
     return {

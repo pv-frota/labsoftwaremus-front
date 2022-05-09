@@ -1,7 +1,7 @@
 <template>
     <q-table
-      title="Classes"
-      :rows="classes"
+      title="Ordems"
+      :rows="ordems"
       :columns="columns"
       row-key="id"
     >
@@ -12,11 +12,11 @@
             color="green"
             icon="fas fa-plus"
             class="q-pa-xs"
-            label="Nova Classe"
+            label="Nova Ordem"
             @click="showDialog()"
           >
             <q-tooltip>
-              Adicionar nova classe
+              Adicionar nova ordem
             </q-tooltip>
           </q-btn>
       </template>
@@ -40,7 +40,7 @@
             dense
             icon="fas fa-trash"
             class="q-pa-xs q-ml-xs"
-            @click="deleteClasse(props.row.id)"
+            @click="deleteOrdem(props.row.id)"
           >
             <q-tooltip>
               Excluir
@@ -49,63 +49,63 @@
         </q-td>
       </template>
     </q-table>
-    <classe-dialog 
+    <ordem-dialog 
       v-model="this.enableDialog" 
-      :classe="classeSelecionado" 
+      :ordem="ordemSelecionado" 
       @close="closeDialog"
     />
 </template>
 
 <script>
-import { columns } from '@/constantes/classe.const'
-import ClasseDialog from '@/components/taxonomia/ClasseDialog.vue'
+import { columns } from '@/constantes/ordem.const'
+import OrdemDialog from '@/components/taxonomia/OrdemDialog.vue'
 export default {
-  name: 'ClasseTab',
+  name: 'OrdemTab',
   components: {
-    ClasseDialog
+    OrdemDialog
   },
   data () {
     return {
-      classes: [],
+      ordems: [],
       columns: columns,
       enableDialog: false,
-      classeSelecionado: 0
+      ordemSelecionado: 0
     }
   },
   mounted () {
-    this.getClasses()
+    this.getOrdems()
   },
   methods: {
-    async getClasses() {
+    async getOrdems() {
       try {
         this.$q.loading.show()
-        let response = await this.$services.classe().list()
-        this.classes = response.data
+        let response = await this.$services.ordem().list()
+        this.ordems = response.data
       } catch (e) {
         console.log(e)
       } finally {
         this.$q.loading.hide()
       }
     },
-    async deleteClasse(id) {
+    async deleteOrdem(id) {
       try {
         this.$q.loading.show()
-        await this.$services.classe().delete(id)
+        await this.$services.ordem().delete(id)
       } catch (e) {
         console.log(e)
       } finally {
         this.$q.loading.hide()
-        this.getClasses()
+        this.getOrdems()
       }
     },
     showDialog (id = 0) {
-      this.classeSelecionado = id
+      this.ordemSelecionado = id
       this.enableDialog = true
     },
     closeDialog () {
-      this.classeSelecionado = 0
+      this.ordemSelecionado = 0
       this.enableDialog = false
-      this.getClasses()
+      this.getOrdems()
     }
   }
 }

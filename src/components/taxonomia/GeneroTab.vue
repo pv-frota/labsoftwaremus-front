@@ -1,7 +1,7 @@
 <template>
     <q-table
-      title="Classes"
-      :rows="classes"
+      title="Gêneros"
+      :rows="generos"
       :columns="columns"
       row-key="id"
     >
@@ -12,11 +12,11 @@
             color="green"
             icon="fas fa-plus"
             class="q-pa-xs"
-            label="Nova Classe"
+            label="Novo Gênero"
             @click="showDialog()"
           >
             <q-tooltip>
-              Adicionar nova classe
+              Adicionar novo gênero
             </q-tooltip>
           </q-btn>
       </template>
@@ -40,7 +40,7 @@
             dense
             icon="fas fa-trash"
             class="q-pa-xs q-ml-xs"
-            @click="deleteClasse(props.row.id)"
+            @click="deleteGenero(props.row.id)"
           >
             <q-tooltip>
               Excluir
@@ -49,63 +49,63 @@
         </q-td>
       </template>
     </q-table>
-    <classe-dialog 
+    <genero-dialog 
       v-model="this.enableDialog" 
-      :classe="classeSelecionado" 
+      :genero="generoSelecionado" 
       @close="closeDialog"
     />
 </template>
 
 <script>
-import { columns } from '@/constantes/classe.const'
-import ClasseDialog from '@/components/taxonomia/ClasseDialog.vue'
+import { columns } from '@/constantes/genero.const'
+import GeneroDialog from '@/components/taxonomia/GeneroDialog.vue'
 export default {
-  name: 'ClasseTab',
+  name: 'GeneroTab',
   components: {
-    ClasseDialog
+    GeneroDialog
   },
   data () {
     return {
-      classes: [],
+      generos: [],
       columns: columns,
       enableDialog: false,
-      classeSelecionado: 0
+      generoSelecionado: 0
     }
   },
   mounted () {
-    this.getClasses()
+    this.getGeneros()
   },
   methods: {
-    async getClasses() {
+    async getGeneros() {
       try {
         this.$q.loading.show()
-        let response = await this.$services.classe().list()
-        this.classes = response.data
+        let response = await this.$services.genero().list()
+        this.generos = response.data
       } catch (e) {
         console.log(e)
       } finally {
         this.$q.loading.hide()
       }
     },
-    async deleteClasse(id) {
+    async deleteGenero(id) {
       try {
         this.$q.loading.show()
-        await this.$services.classe().delete(id)
+        await this.$services.genero().delete(id)
       } catch (e) {
         console.log(e)
       } finally {
         this.$q.loading.hide()
-        this.getClasses()
+        this.getGeneros()
       }
     },
     showDialog (id = 0) {
-      this.classeSelecionado = id
+      this.generoSelecionado = id
       this.enableDialog = true
     },
     closeDialog () {
-      this.classeSelecionado = 0
+      this.generoSelecionado = 0
       this.enableDialog = false
-      this.getClasses()
+      this.getGeneros()
     }
   }
 }

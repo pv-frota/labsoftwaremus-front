@@ -57,12 +57,12 @@
 
 <script>
 import { ref } from 'vue'
-import ReinoTab from '@/components/taxonomia/ReinoTab.vue'
-import FiloTab from '@/components/taxonomia/FiloTab.vue'
-import ClasseTab from '@/components/taxonomia/ClasseTab.vue'
-import OrdemTab from '@/components/taxonomia/OrdemTab.vue'
-import FamiliaTab from '@/components/taxonomia/FamiliaTab.vue'
-import GeneroTab from '@/components/taxonomia/GeneroTab.vue'
+import ReinoTab from '@/components/tabs/taxonomia/ReinoTab.vue'
+import FiloTab from '@/components/tabs/taxonomia/FiloTab.vue'
+import ClasseTab from '@/components/tabs/taxonomia/ClasseTab.vue'
+import OrdemTab from '@/components/tabs/taxonomia/OrdemTab.vue'
+import FamiliaTab from '@/components/tabs/taxonomia/FamiliaTab.vue'
+import GeneroTab from '@/components/tabs/taxonomia/GeneroTab.vue'
 
 export default {
   name: 'TaxonomiaView',

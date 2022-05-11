@@ -30,7 +30,8 @@
 
             <q-btn 
               flat color = "white" 
-              label="Home"
+              label="Início"
+              href="/home"
             />
             
             <q-btn
@@ -40,7 +41,7 @@
             
             <q-btn
               flat color = "white"  
-              label="Sobre"
+              label="Contato"
             />
 
             <q-btn flat color = "white"  label="Login"  v-if="!isLogado" @click="goToLogin()" />

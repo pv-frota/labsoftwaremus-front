@@ -58,9 +58,9 @@
                   </q-item-section>
                 </q-item>
 
-                <q-item clickable v-close-popup @click="goToClassificacao()">
+                <q-item clickable v-close-popup @click="goToEspecificacao()">
                   <q-item-section>
-                    <q-item-label>Classificação</q-item-label>
+                    <q-item-label>Especificação</q-item-label>
                   </q-item-section>
                 </q-item>
 
@@ -106,8 +106,8 @@ export default {
     goToTaxonomia() {
       this.$router.push("/taxonomia");
     },
-    goToClassificacao() {
-      this.$router.push("/classificacao");
+    goToEspecificacao() {
+      this.$router.push("/especificacao");
     },
   },
 };

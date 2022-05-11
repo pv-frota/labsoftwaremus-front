@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import LoginView from '../views/LoginView.vue'
-import ClassificacaoView from '../views/ClassificacaoView.vue'
+import EspecificacaoView from '../views/EspecificacaoView.vue'
 import TaxonomiaView from '../views/TaxonomiaView.vue'
 import HomeView from '../views/HomeView.vue'
 import store from '@/store'
@@ -25,9 +25,9 @@ const routes = [
     }
   },
   {
-    path: '/classificacao',
-    name: 'classificacao',
-    component: ClassificacaoView,
+    path: '/especificacao',
+    name: 'especificacao',
+    component: EspecificacaoView,
     meta: {
       requiresAuth: true
     }

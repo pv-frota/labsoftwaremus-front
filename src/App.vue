@@ -78,11 +78,14 @@
 
 .jumbotron{
   height: 250px;
+  
 }
 
 .jumbotron-container{
   text-align: center;
   color: white;
+  background-image: url("https://images.pexels.com/photos/5643880/pexels-photo-5643880.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+  background-size:cover;
   background-color: rgba(0, 0, 0, 0.4);
 }
 

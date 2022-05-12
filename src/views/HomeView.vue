@@ -70,7 +70,7 @@
 <style scoped>
 
 .jumbotron{
-  height: 250px;
+  height: 420px;
   
 }
 

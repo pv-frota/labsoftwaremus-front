@@ -31,7 +31,7 @@
             <q-btn 
               flat color = "white" 
               label="Início"
-              href="/home"
+              href="/"
             />
             
             <q-btn

@@ -34,7 +34,7 @@
 
         </div>
 
-        <p>&copy; Instituto de Ciências Agrárias. Todos os direitos reservados.</p>
+        <center><p>&copy; Instituto de Ciências Agrárias. Todos os direitos reservados.</p></center>
       </div>
 
     </div>

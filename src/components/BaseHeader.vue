@@ -4,7 +4,7 @@
 
     <div class="q-pa-md" style="height: 80%">
 
-        <div class="row justify-between">
+        <div class="row justify-between teste">
 
           <div class="col-md-6">
 
@@ -77,8 +77,6 @@
       
         </div>
 
-      <div/>
-
     </div>
   </q-header>
 
@@ -89,6 +87,10 @@
   display: flex;
   flex-direction: column;
   height: 130px;
+}
+
+.teste{
+  height: 100px;
 }
 </style>
 

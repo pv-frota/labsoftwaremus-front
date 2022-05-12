@@ -52,9 +52,6 @@
 }
 </style>
 
-
-
-
 <script>
 
 export default {

@@ -3,6 +3,7 @@ import LoginView from '../views/LoginView.vue'
 import EspecificacaoView from '../views/EspecificacaoView.vue'
 import TaxonomiaView from '../views/TaxonomiaView.vue'
 import HomeView from '../views/HomeView.vue'
+import FiltroView from '../views/FiltroView.vue'
 import store from '@/store'
 
 const routes = [
@@ -10,6 +11,11 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/busca',
+    name: 'busca',
+    component: FiltroView
   },
   {
     path: '/login',

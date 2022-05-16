@@ -12,6 +12,7 @@ import OrdemService from './ordem/ordem.service'
 import FamiliaService from './familia/familia.service'
 import GeneroService from './genero/genero.service'
 import EspecieService from './especie/especie.service'
+import FiltroService from './filtro/filtro.service'
 
 export default {
   auth: () => new AuthService(http),
@@ -25,5 +26,6 @@ export default {
   ordem: () => new OrdemService(http),
   familia: () => new FamiliaService(http),
   genero: () => new GeneroService(http),
-  especie: () => new EspecieService(http)
+  especie: () => new EspecieService(http),
+  filtro: () => new FiltroService(http)
 }

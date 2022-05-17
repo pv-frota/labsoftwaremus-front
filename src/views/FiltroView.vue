@@ -11,9 +11,9 @@
               vertical
               class="text-teal"
               >
-                  <q-tab name="classificacao" label="Taxonomia" />
-                  <q-tab name="subclassificacao" label="Descrição" />
-                  <q-tab name="descricao" label="Avançada" />
+                  <q-tab name="taxonomia" label="Taxonomia" />
+                  <q-tab name="descricao" label="Descrição" />
+                  <q-tab name="subclassificacao" label="Avançada" />
               </q-tabs>
           </template>
 
@@ -26,16 +26,16 @@
                   transition-prev="slide-up"
                   transition-next="slide-down"
                   >
-                  <q-tab-panel name="classificacao">
+                  <q-tab-panel name="taxonomia">
                       <taxonomia-tab/>
+                  </q-tab-panel>
+
+                   <q-tab-panel name="descricao">
+                      <descricao-tab/>
                   </q-tab-panel>
 
                   <q-tab-panel name="subclassificacao">
                       <subclassificacao-tab/>
-                  </q-tab-panel>
-
-                  <q-tab-panel name="descricao">
-                      <descricao-tab/>
                   </q-tab-panel>
 
               </q-tab-panels>
@@ -51,7 +51,7 @@
 import { ref } from 'vue'
 import TaxonomiaTab from '@/components/tabs/filtro/TaxonomiaTab.vue'
 import SubclassificacaoTab from '@/components/tabs/especificacao/SubclassificacaoTab.vue'
-import DescricaoTab from '@/components/tabs/especificacao/DescricaoTab.vue'
+import DescricaoTab from '@/components/tabs/filtro/DescricaoTab.vue'
 
 export default {
   name: 'FiltroView',
@@ -62,26 +62,8 @@ export default {
   },
   setup () {
     return {
-      tab: ref('classificacao'),
+      tab: ref('taxonomia'),
       splitterModel: ref(20)
-    }
-  },
-  data () {
-    return {
-      form: {
-        login: "",
-        senha: "",
-      },
-    };
-  },
-  methods: {
-    async filtrar () {
-        
-      const response = await this.$services
-        .auth()
-        .login(this.form.login, this.form.senha)
-      this.$store.commit('setUsuario', response.data);
-      this.$router.push('/')
     }
   }
 }

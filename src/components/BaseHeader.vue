@@ -36,7 +36,8 @@
             
             <q-btn
               flat color = "white"  
-              label="Sobre"
+              label="Busca"
+              href="/busca"
             />
             
             <q-btn

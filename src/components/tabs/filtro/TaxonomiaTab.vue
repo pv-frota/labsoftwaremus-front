@@ -1,10 +1,10 @@
 <template>
-  <div class="column q-pa-xl" style="max-width: 40%">
+  <div class="column" style="max-width: 40%">
     <q-form @submit="filtrar">
       <div class="form-group">
         <div class="form-input" style="max-width: 90%">
 
-          <p>Busca em cadeia</p>
+          <p class="q-my-md">Busca em cadeia</p>
 
           <select-autocomplete class="q-my-md"
             v-model="form.ordem" 
@@ -31,6 +31,29 @@
             attribute="nome"
           />
 
+          <p>Busca Livre</p>
+
+          <div class="row">
+            <select-autocomplete class="col-xs-12 col-sm-12 col-md-4 col-lg-3"
+              v-model="form.operacaoSelecionada" 
+              :values="operacoes"
+              label="Método"
+              attribute="nome"
+            />
+            <q-input class="col-xs-12 col-sm-12 col-md-4 col-lg-6"
+              outlined stack-label
+              dense
+              v-model="form.valor"
+              label="Nome"
+            />
+            <select-autocomplete class="col-xs-12 col-sm-12 col-md-4 col-lg-3"
+              v-model="form.parametroSelecionado" 
+              :values="parametros"
+              label="Filtrar por"
+              attribute="nome"
+            />
+          </div>
+
           <q-btn class="q-my-md" label="Buscar" color="positive" type="submit" />
 
         </div>
@@ -46,8 +69,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 500px;
-  height: 500px;
   background-color: lightcyan;
   border-radius: 25px;
 }
@@ -69,14 +90,42 @@ export default {
       ordens: [],
       familias: [],
       generos: [],
+      operacoes: [
+        {
+          nome: 'Possui'
+        },
+        {
+          nome: 'Começa'
+        },
+        {
+          nome: 'Termina'
+        }
+      ],
+      parametros: [
+        {
+          nome: 'Todos'
+        },
+        {
+          nome: 'Ordem'
+        },
+        {
+          nome: 'Familia'
+        },
+        {
+          nome: 'Genero'
+        },
+        {
+          nome: 'Especie'
+        },
+      ],
       form: {
         ordem: null,
         familia: null,
-        genero: null
-      },
-      ordemSelecionada: null,
-      familiaSelecionada: null,
-      generoSelecionado: null
+        genero: null,
+        valor: '',
+        operacaoSelecionada: null,
+        parametroSelecionado: null
+      }
     }
   },
   mounted () {
@@ -86,13 +135,23 @@ export default {
     async filtrar () {
       try {
         this.$q.loading.show()
-        const response = await this.$services.filtro().filter({
-          idOrdem: this.form.ordem.id,
-          idFamilia: this.form.familia != null ? this.form.familia.id : 0,
-          idGenero: this.form.genero != null ? this.form.genero.id : 0,
-          idsDescricao: 0
-        })
-        console.log(response.data)
+        if(this.form.valor) {
+          const response = await this.$services.filtro().buscaLivre(
+            this.form.parametroSelecionado.nome.toLowerCase(), 
+            this.form.operacaoSelecionada.nome.toLowerCase(), 
+            this.form.valor
+          )
+          console.log(response.data)
+        } else {
+          const response = await this.$services.filtro().filter({
+            idOrdem: this.form.ordem.id,
+            idFamilia: this.form.familia != null ? this.form.familia.id : 0,
+            idGenero: this.form.genero != null ? this.form.genero.id : 0,
+            idsDescricao: 0
+          })
+          console.log(response.data)
+        }
+        
       } catch (e) {
         console.log(e)
       } finally {

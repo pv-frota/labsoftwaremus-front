@@ -6,6 +6,6 @@ export default class FiltroService extends Rest {
   }
 
   async buscaLivre (parametro, operacao, valor) {
-    return await this.http.get(`${this.url}/busca/${parametro}/${operacao}/${valor}}`)
+    return await this.http.get(`${this.url}/busca/${parametro}/${operacao}/${valor}`)
   }
 }

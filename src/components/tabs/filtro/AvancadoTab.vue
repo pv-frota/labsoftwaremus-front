@@ -56,6 +56,15 @@
               :disable="descricoes.length == 0"
               label="Descrição"
               attribute="valor"
+              @select="getSubvalores"
+            />
+
+            <select-autocomplete class="q-mb-md q-mx-xl"
+              v-model="form.subvalor" 
+              :values="subvalores"
+              v-show="subvalores.length > 0"
+              label="Subvalor"
+              attribute="valor"
             />
           </div>
         </div>
@@ -71,6 +80,7 @@
         <q-table class="q-ma-md"
           title="Parâmetros da busca (Opcional)"
           dense
+          :grid="$q.screen.xs"
           :rows="form.parametros"
           :columns="columns"
           row-key="id"
@@ -98,6 +108,7 @@ export default {
       classificacoes: [],
       subclassificacoes: [],
       descricoes: [],
+      subvalores: [],
       ordens: [],
       familias: [],
       generos: [],
@@ -105,6 +116,7 @@ export default {
         classificacao: null,
         subclassificacao: null,
         descricao: null,
+        subvalor: null,
         ordem: null,
         familia: null,
         genero: null,
@@ -129,7 +141,7 @@ export default {
         if(this.form.parametros.length <= 0) {
           const response = await this.$services.filtro().filter({
             ...filtro,
-            idsDescricao: this.form.descricao.id
+            idsDescricao: this.form.subvalor == null ? this.form.descricao.id : this.form.subvalor.id
           })
           console.log(response.data)
         } else {
@@ -150,12 +162,18 @@ export default {
       }
     },
     adicionarParametro () {
-      this.form.parametros.push(this.form.descricao)
+      if(this.form.subvalor == null) {
+        this.form.parametros.push(this.form.descricao)
+      } else {
+        this.form.parametros.push(this.form.subvalor)
+      }
       this.form.classificacao = null
       this.form.subclassificacao = null
       this.form.descricao = null
+      this.form.subvalor = null
       this.subclassificacoes = []
       this.descricoes = []
+      this.subvalores = []
     },
     async getClassificacoes () {
       try {
@@ -171,7 +189,9 @@ export default {
     async getSubclassificacoes () {
       this.form.subclassificacao = null
       this.form.descricao = null
+      this.form.subvalor = null
       this.descricoes = []
+      this.subvalores = []
       this.$q.loading.show()
       setTimeout(async () => {
         try {
@@ -186,11 +206,27 @@ export default {
     },
     async getDescricoes () {
       this.form.descricao = null
+      this.form.subvalor = null
+      this.subvalores = []
       this.$q.loading.show()
       setTimeout(async () => {
         try {
           const response = await this.$services.descricao().readParent(this.form.subclassificacao.id)
           this.descricoes = response.data
+        } catch (e) {
+          console.log(e)
+        } finally {
+          this.$q.loading.hide()
+        }
+      }, 1000);
+    },
+    async getSubvalores () {
+      this.form.subvalor = null
+      this.$q.loading.show()
+      setTimeout(async () => {
+        try {
+          const response = await this.$services.subvalor().readParent(this.form.descricao.id)
+          this.subvalores = response.data
         } catch (e) {
           console.log(e)
         } finally {

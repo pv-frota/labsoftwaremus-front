@@ -1,52 +1,53 @@
 <template>
-  <div class="column" style="max-width: 40%">
+  <div class="column items-stretch">
     <q-form @submit="filtrar">
-      <div class="form-group">
-        <div class="form-input" style="max-width: 90%">
+        <div class="bg-light-green-1">
 
-          <p class="q-my-md">Busca em cadeia</p>
+          <p class="q-pa-md">Busca em cadeia</p>
 
-          <select-autocomplete class="q-my-md"
-            v-model="form.ordem" 
-            :values="ordens"
-            label="Ordem"
-            attribute="nome"
-            @select="getFamilias"
-          />
+          <div class="column justify-center">
+            <select-autocomplete class="q-mb-md q-mx-xl"
+              v-model="form.ordem" 
+              :values="ordens"
+              label="Ordem"
+              attribute="nome"
+              @select="getFamilias"
+            />
 
-          <select-autocomplete class="q-my-md"
-            v-model="form.familia" 
-            :values="familias"
-            :disable="familias.length == 0"
-            label="Familia"
-            attribute="nome"
-            @select="getGeneros"
-          />
+            <select-autocomplete class="q-mb-md q-mx-xl"
+              v-model="form.familia" 
+              :values="familias"
+              :disable="familias.length == 0"
+              label="Familia"
+              attribute="nome"
+              @select="getGeneros"
+            />
 
-          <select-autocomplete class="q-my-md"
-            v-model="form.genero" 
-            :values="generos"
-            :disable="generos.length == 0"
-            label="Gênero"
-            attribute="nome"
-          />
+            <select-autocomplete class="q-mb-md q-mx-xl"
+              v-model="form.genero" 
+              :values="generos"
+              :disable="generos.length == 0"
+              label="Gênero"
+              attribute="nome"
+            />
+          </div>
 
-          <p>Busca Livre</p>
+          <p class="q-pa-md">Busca Livre</p>
 
-          <div class="row">
-            <select-autocomplete class="col-xs-12 col-sm-12 col-md-4 col-lg-3"
+          <div class="row items-center q-px-xl">
+            <select-autocomplete class="col-xs-12 col-sm-12 col-md-4 col-lg-3 q-mx-auto"
               v-model="form.operacaoSelecionada" 
               :values="operacoes"
               label="Método"
               attribute="nome"
             />
-            <q-input class="col-xs-12 col-sm-12 col-md-4 col-lg-6"
+            <q-input class="col-xs-12 col-sm-12 col-md-4 col-lg-6 q-mx-auto"
               outlined stack-label
               dense
               v-model="form.valor"
               label="Nome"
             />
-            <select-autocomplete class="col-xs-12 col-sm-12 col-md-4 col-lg-3"
+            <select-autocomplete class="q-mx-auto col-xs-12 col-sm-12 col-md-4 col-lg-3 q-mx-auto"
               v-model="form.parametroSelecionado" 
               :values="parametros"
               label="Filtrar por"
@@ -54,29 +55,14 @@
             />
           </div>
 
-          <q-btn class="q-my-md" label="Buscar" color="positive" type="submit" />
+          <div class="row justify-end">
+            <q-btn class="q-ma-md" label="Buscar" color="positive" type="submit" />
+          </div>
 
         </div>
-      </div>
     </q-form>
   </div>
 </template>
-
-<style scoped>
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: lightcyan;
-  border-radius: 25px;
-}
-
-.form-input{
-  text-align: center;
-}
-</style>
 
 <script>
 import SelectAutocomplete from '@/components/SelectAutocomplete.vue'

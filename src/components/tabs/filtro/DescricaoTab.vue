@@ -74,9 +74,7 @@ export default {
         classificacao: null,
         subclassificacao: null,
         descricao: null,
-        parametros: [],
-        operacaoSelecionada: null,
-        parametroSelecionado: null
+        parametros: []
       },
       columns: columnsParametro
     }

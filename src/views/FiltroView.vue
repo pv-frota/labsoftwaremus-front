@@ -7,7 +7,7 @@
       >
           <q-tab name="taxonomia" label="Taxonomia" />
           <q-tab name="descricao" label="Descrição" />
-          <q-tab name="subclassificacao" label="Avançada" />
+          <q-tab name="avancado" label="Avançada" />
       </q-tabs>
       <q-tab-panels
           v-model="tab"
@@ -24,8 +24,8 @@
               <descricao-tab/>
           </q-tab-panel>
 
-          <q-tab-panel name="subclassificacao">
-              <subclassificacao-tab/>
+          <q-tab-panel name="avancado">
+              <avancado-tab/>
           </q-tab-panel>
         </q-tab-panels>
     </div>
@@ -38,7 +38,7 @@
         >
             <q-tab name="taxonomia" label="Taxonomia" />
             <q-tab name="descricao" label="Descrição" />
-            <q-tab name="subclassificacao" label="Avançada" />
+            <q-tab name="avancado" label="Avançada" />
         </q-tabs>
       </template>
 
@@ -59,8 +59,8 @@
               <descricao-tab/>
           </q-tab-panel>
 
-          <q-tab-panel name="subclassificacao">
-              <subclassificacao-tab/>
+          <q-tab-panel name="avancado">
+              <avancado-tab/>
           </q-tab-panel>
         </q-tab-panels>
       </template>
@@ -72,14 +72,14 @@
 import { ref } from 'vue'
 import { useQuasar } from 'quasar'
 import TaxonomiaTab from '@/components/tabs/filtro/TaxonomiaTab.vue'
-import SubclassificacaoTab from '@/components/tabs/especificacao/SubclassificacaoTab.vue'
+import AvancadoTab from '@/components/tabs/filtro/AvancadoTab.vue'
 import DescricaoTab from '@/components/tabs/filtro/DescricaoTab.vue'
 
 export default {
   name: 'FiltroView',
   components: {
     TaxonomiaTab,
-    SubclassificacaoTab,
+    AvancadoTab,
     DescricaoTab
   },
   setup () {

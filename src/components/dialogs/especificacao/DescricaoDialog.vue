@@ -29,6 +29,15 @@
             label="Subclassificação"
             attribute="nome"
           />
+          <img :src="form.imagemDescricao ? form.imagemDescricao.imagem : ''" />
+          <q-file
+            style="max-width: 300px"
+            v-model="form.imagem"
+            filled
+            rounded
+            label="Restricted to images"
+            accept=".jpg, image/*"
+          />
         </q-page>
       </q-page-container>
     </q-layout>
@@ -54,6 +63,7 @@ export default {
       form: {
         id: 0,
         nome: '',
+        imagem: null,
         subclassificacao: {
           id: 0,
           nome: 'Selecione uma subclassificação'
@@ -108,20 +118,49 @@ export default {
     },
     async onSave () {
       try {
-          this.$q.loading.show()
-          let response = null
-          if(this.operacao === 'Editar') {
-              response = await this.$services.descricao().update(this.descricao, this.form)
-          } else {
-              response = await this.$services.descricao().create(this.form, true)
+        this.$q.loading.show()
+        let response = {}
+        let imagemBase64 = null 
+        if(this.form.imagem) {
+          let base64 = await this.toBase64(this.form.imagem)
+          imagemBase64 = {
+            id: 0,
+            imagem: base64
           }
-          this.form = response.data
+        }
+        if(this.operacao === 'Editar') {
+          if(this.form.imagemDescricao && this.form.imagem) {
+            imagemBase64.id = this.form.imagemDescricao.id
+          }
+          if(this.form.imagem) {
+            response = await this.$services.descricao().update(this.descricao, {
+              ...this.form,
+              imagemDescricao: imagemBase64
+            })
+          } else {
+            response = await this.$services.descricao().update(this.descricao,this.form)
+          }
+        } else {
+          response = await this.$services.descricao().create({
+            ...this.form,
+            imagemDescricao: imagemBase64
+          }, true)
+        }
+        this.form = response.data
       } catch (e) {
-          console.log(e)
+        console.log(e)
       } finally {
-          this.$q.loading.hide()
-          this.$emit('close')
+        this.$q.loading.hide()
+        this.$emit('close')
       }
+    },
+    toBase64 (file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.onload = () => resolve(reader.result)
+        reader.onerror = error => reject(error)
+      })
     }
   }
 }

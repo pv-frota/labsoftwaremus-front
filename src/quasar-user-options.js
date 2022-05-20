@@ -33,7 +33,19 @@ export default {
   animations: 'all',
   config: {
     notify: { /* Notify defaults */ },
-    loading: { /* Loading defaults */ }
+    loading: { /* Loading defaults */ },
+    brand: {
+      primary: '#4caf50',
+      secondary: '#26A69A',
+      accent: '#9C27B0',
+
+      dark: '#1d1d1d',
+
+      positive: '#21BA45',
+      negative: '#C10015',
+      info: '#31CCEC',
+      warning: '#F2C037'
+    }
   },
   lang: lang
 }

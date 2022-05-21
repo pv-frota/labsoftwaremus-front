@@ -71,6 +71,7 @@
     <template v-slot:after>
         <div class="q-pa-md row">
           <q-input outlined stack-label class="col-6 q-mb-md"
+            input-class="text-italic"
             v-model="form.nome" 
             label="Nome Científico" 
           />

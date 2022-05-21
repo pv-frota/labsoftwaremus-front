@@ -48,7 +48,7 @@
             <q-btn flat color = "white"  label="Login"  v-if="!isLogado" @click="goToLogin()" />
             <q-btn-dropdown v-if="isLogado" color="primary" label="Admin">
               <q-list>
-                <q-item clickable v-close-popup>
+                <q-item clickable v-close-popup @click="goToNovoInseto()">
                   <q-item-section>
                     <q-item-label>Novo Inseto</q-item-label>
                   </q-item-section>
@@ -113,6 +113,9 @@ export default {
     goToEspecificacao() {
       this.$router.push("/especificacao");
     },
+    goToNovoInseto() {
+      this.$router.push("/inseto-form");
+    }
   },
 };
 </script>

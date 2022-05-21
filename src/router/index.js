@@ -4,6 +4,7 @@ import EspecificacaoView from '../views/EspecificacaoView.vue'
 import TaxonomiaView from '../views/TaxonomiaView.vue'
 import HomeView from '../views/HomeView.vue'
 import FiltroView from '../views/FiltroView.vue'
+import FormularioInsetoView from '../views/FormularioInsetoView.vue'
 import store from '@/store'
 
 const routes = [
@@ -37,6 +38,11 @@ const routes = [
     meta: {
       requiresAuth: true
     }
+  },
+  {
+    path: '/inseto-form',
+    name: 'inseto-form',
+    component: FormularioInsetoView,
   }
 ]
 
